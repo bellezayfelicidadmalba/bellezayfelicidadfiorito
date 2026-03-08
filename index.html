@@ -138,6 +138,18 @@
         // Botón de inicio para cumplir políticas de Safari/Chrome
         document.getElementById('startButton').addEventListener('click', () => {
             document.getElementById('overlay').style.display = 'none';
+       
+            // "Despierta" todos los videos para saltar la restricción de iPhone/Android
+            const videos = document.querySelectorAll('video');
+            videos.forEach(v => {
+                // Se le da un pequeño play/pause rápido para que el navegador 
+                // entienda que el usuario dio permiso de reproducir medios.
+                v.play().then(() => {
+                    v.pause();
+                }).catch(err => {
+                    console.log("Esperando interacción para:", v.id);
+                });
+            });
         });
     </script>
 </body>
