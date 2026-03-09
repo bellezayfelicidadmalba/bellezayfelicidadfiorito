@@ -1,189 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RZYNW1XEZ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-3RZYNW1XEZ');
+    </script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3RZYNW1XEZ"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-3RZYNW1XEZ');
-</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>Experiencia RA Belleza y Felicidad Fiorito - MALBA</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta charset="UTF-8">
-<title>Experiencia RA Belleza y Felicidad Fiorito - MALBA</title>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
-<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-
-<style>
-
-body{
-margin:0;
-overflow:hidden;
-font-family:Helvetica, Arial, sans-serif;
-}
-
-#overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-z-index:1000;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-color:white;
-text-align:center;
-padding:20px;
-}
-
-#overlay button{
-padding:15px 30px;
-font-size:18px;
-background:#fff;
-border:none;
-border-radius:25px;
-cursor:pointer;
-margin-top:20px;
-font-weight:bold;
-}
-
-.loading-text{
-font-size:14px;
-margin-top:10px;
-color:#aaa;
-}
-
-</style>
+    <style>
+        body { margin: 0; overflow: hidden; font-family: Helvetica, Arial, sans-serif; background: #000; }
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 1000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; padding: 20px;
+        }
+        #overlay button {
+            padding: 15px 30px; font-size: 18px; background: #fff; border: none;
+            border-radius: 25px; cursor: pointer; margin-top: 20px; font-weight: bold;
+        }
+        .loading-text { font-size: 14px; margin-top: 10px; color: #aaa; }
+    </style>
 </head>
 
 <body>
 
-<div id="overlay">
-<h2>Belleza y Felicidad Fiorito - MALBA</h2>
-<p>Apunta a los marcadores para ver los videos</p>
-<button id="startButton">COMENZAR EXPERIENCIA</button>
-<p class="loading-text">Se recomienda el uso de auriculares</p>
-</div>
+    <div id="overlay">
+        <h2>Belleza y Felicidad Fiorito - MALBA 2 </h2>
+        <p>Apunta a los marcadores para ver los videos</p>
+        <button id="startButton">COMENZAR EXPERIENCIA</button>
+        <p class="loading-text">Se recomienda el uso de auriculares</p>
+    </div>
 
+    <a-scene
+        mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 1; autoStart: false;"
+        color-space="sRGB"
+        renderer="colorManagement: true"
+        vr-mode-ui="enabled: false"
+        device-orientation-permission-ui="enabled: false">
 
-<a-scene
-mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 1; autoStart: false;"
-color-space="sRGB"
-renderer="colorManagement: true"
-vr-mode-ui="enabled: false"
-device-orientation-permission-ui="enabled: false">
+        <a-assets>
+            <video id="vid0" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772938685/1_COMEDOR_GOURMET_REPARTO_TUPPERS_480_hxse1v.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid1" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/2_TALLER_NINIES_480_oidhcn.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid2" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908741/3_SERIGRAFIA480_bs3bnn.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid3" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/4_TALLER_CERAMICA_ADULTO_480_mze0hn.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid4" preload="none" data-src="https://tuservidor.com/video5.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid5" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908744/6_TALLER_COSTURA_DELANTALES_480_wnhiyo.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid6" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908747/7_VEREDAS_FIORITO_CHICAS_BAILANDO_i1muut.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid7" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908745/8_VEREDAS_FIORITO_HELADOS_480_fdzlhs.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid8" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908748/9_VEREDAS_FIORITO_NINIES_CAMINANDO_480_rlx0my.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid9" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908750/10_VEREDAS_FIORITO_NINIES_480_dkxfpd.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid10" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908751/11_VEREDAS_FIORITO_POLICIA_480_m3e72k.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid11" preload="none" data-src="https://tuservidor.com/video12.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid12" preload="none" data-src="https://tuservidor.com/video13.mp4" loop crossorigin="anonymous" playsinline></video>
+            <video id="vid13" preload="none" data-src="https://tuservidor.com/video14.mp4" loop crossorigin="anonymous" playsinline></video>
+        </a-assets>
 
-<a-assets>
+        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-<video id="vid0" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772938685/1_COMEDOR_GOURMET_REPARTO_TUPPERS_480_hxse1v.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+        <a-entity mindar-image-target="targetIndex:0"><a-video src="#vid0" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:1"><a-video src="#vid1" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:2"><a-video src="#vid2" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:3"><a-video src="#vid3" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:4"><a-video src="#vid4" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:5"><a-video src="#vid5" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:6"><a-video src="#vid6" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:7"><a-video src="#vid7" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:8"><a-video src="#vid8" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:9"><a-video src="#vid9" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:10"><a-video src="#vid10" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:11"><a-video src="#vid11" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:12"><a-video src="#vid12" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+        <a-entity mindar-image-target="targetIndex:13"><a-video src="#vid13" position="0 0 0.1" width="1" height="1.7" smart-video-player></a-video></a-entity>
+    </a-scene>
 
-<video id="vid1" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/2_TALLER_NINIES_480_oidhcn.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+    <script>
+        AFRAME.registerComponent('smart-video-player', {
+            init: function () {
+                const videoID = this.el.getAttribute('src').replace('#', '');
+                const video = document.getElementById(videoID);
 
-<video id="vid2" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908741/3_SERIGRAFIA480_bs3bnn.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+                this.el.parentEl.addEventListener('targetFound', () => {
+                    if (!video.src || video.src === "") {
+                        video.src = video.dataset.src;
+                        video.load();
+                    }
+                    video.play().catch(() => {});
+                    gtag('event', 'obra_vista', { 'video_id': videoID });
+                });
 
-<video id="vid3" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/4_TALLER_CERAMICA_ADULTO_480_mze0hn.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+                this.el.parentEl.addEventListener('targetLost', () => {
+                    video.pause();
+                });
+            }
+        });
 
-<!-- VIDEO 5 NO TOCADO -->
-<video id="vid4" preload="none" data-src="https://tuservidor.com/video5.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+        const startExperience = async () => {
+            const overlay = document.getElementById('overlay');
+            const scene = document.querySelector('a-scene');
 
-<video id="vid5" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908744/6_TALLER_COSTURA_DELANTALES_480_wnhiyo.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+            // Verificamos que la escena esté lista antes de arrancar
+            if (scene.hasLoaded) {
+                run();
+            } else {
+                scene.addEventListener('loaded', run);
+            }
 
-<video id="vid6" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908747/7_VEREDAS_FIORITO_CHICAS_BAILANDO_i1muut.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+            async function run() {
+                overlay.style.display = "none";
+                
+                // Arrancar MindAR
+                const arSystem = scene.systems["mindar-image-system"];
+                await arSystem.start(); 
 
-<video id="vid7" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908745/8_VEREDAS_FIORITO_HELADOS_480_fdzlhs.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+                // Desbloqueo de videos para móviles
+                const videos = document.querySelectorAll("video");
+                videos.forEach(v => {
+                    v.muted = false;
+                    v.play().then(() => { v.pause(); }).catch(() => {});
+                });
+            }
+        };
 
-<video id="vid8" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908748/9_VEREDAS_FIORITO_NINIES_CAMINANDO_480_rlx0my.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-
-<video id="vid9" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908750/10_VEREDAS_FIORITO_NINIES_480_dkxfpd.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-
-<video id="vid10" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908751/11_VEREDAS_FIORITO_POLICIA_480_m3e72k.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-
-<video id="vid11" preload="none" data-src="https://tuservidor.com/video12.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-
-<video id="vid12" preload="none" data-src="https://tuservidor.com/video13.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-
-<video id="vid13" preload="none" data-src="https://tuservidor.com/video14.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
-
-</a-assets>
-
-
-<a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
-
-
-<a-entity mindar-image-target="targetIndex:0"><a-video src="#vid0" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:1"><a-video src="#vid1" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5"" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:2"><a-video src="#vid2" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:3"><a-video src="#vid3" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:4"><a-video src="#vid4" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:5"><a-video src="#vid5" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5"smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:6"><a-video src="#vid6" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:7"><a-video src="#vid7" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:8"><a-video src="#vid8" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:9"><a-video src="#vid9"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:10"><a-video src="#vid10"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:11"><a-video src="#vid11"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5"smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:12"><a-video src="#vid12"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:13"><a-video src="#vid13"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-
-</a-scene>
-
-
-
-<script>
-
-AFRAME.registerComponent('smart-video-player',{
-init:function(){
-
-const videoID=this.el.getAttribute('src').replace('#','');
-const video=document.getElementById(videoID);
-
-this.el.parentEl.addEventListener('targetFound',()=>{
-
-if(!video.src){
-video.src=video.dataset.src;
-video.load();
-}
-
-video.currentTime=0;
-
-video.play().catch(()=>{});
-
-});
-
-this.el.parentEl.addEventListener('targetLost',()=>{
-video.pause();
-});
-
-}
-});
-
-
-
-document.getElementById('startButton').addEventListener('click',async()=>{
-
-const overlay=document.getElementById('overlay');
-const scene=document.querySelector('a-scene');
-
-overlay.style.display="none";
-
-await scene.systems["mindar-image-system"].start();
-
-const videos=document.querySelectorAll("video");
-
-videos.forEach(v=>{
-v.muted=false;
-v.play().then(()=>{v.pause()}).catch(()=>{});
-});
-
-});
-
-</script>
-
+        document.getElementById('startButton').addEventListener('click', startExperience);
+    </script>
 </body>
 </html>
