@@ -34,7 +34,7 @@
 <body>
 
     <div id="overlay">
-        <h2>Belleza y Felicidad Fiorito - MALBA 9 </h2>
+        <h2>Belleza y Felicidad Fiorito - MALBA 10 </h2>
         <p>Apunta a los marcadores para ver los videos</p>
         <button id="startButton">COMENZAR EXPERIENCIA</button>
         <p class="loading-text">Se recomienda el uso de auriculares</p>
@@ -89,7 +89,7 @@
 <a-entity mindar-image-target="targetIndex:6"><a-video src="#vid6" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:7"><a-video src="#vid7" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:8"><a-video src="#vid8" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:9"><a-video src="#vid9"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:9"><a-video src="#vid9" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:10"><a-video src="#vid10"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:11"><a-video src="#vid11"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5"smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:12"><a-video src="#vid12"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
@@ -97,30 +97,43 @@
         </a-scene>
 
     <script>
-        // Componente para manejar carga y reproducción inteligente
-        AFRAME.registerComponent('smart-video-player', {
-            init: function () {
-                const video = document.querySelector(this.el.getAttribute('src'));
-                
-                this.el.parentEl.addEventListener('targetFound', () => {
-                    // Si no tiene fuente, la cargamos en el momento
-                    if (!video.src || video.src === "") {
-                        video.src = video.getAttribute('data-src');
-                        video.load();
-                    }
-                    video.play();
-                });
-
-                this.el.parentEl.addEventListener('targetLost', () => {
-                    video.pause();
+// Componente optimizado para iOS (Safari)
+AFRAME.registerComponent('smart-video-player', {
+    init: function () {
+        this.video = document.querySelector(this.el.getAttribute('src'));
+        
+        this.el.parentEl.addEventListener('targetFound', () => {
+            // 1. Asignar el src solo cuando se encuentra el target
+            if (!this.video.src || this.video.src === window.location.href) {
+                this.video.src = this.video.getAttribute('data-src');
+                this.video.load();
+            }
+            
+            // 2. Intentar reproducir (promesa para evitar errores de políticas)
+            const playPromise = this.video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Auto-play prevenido:", error);
                 });
             }
         });
 
-        // Botón de inicio para cumplir políticas de Safari/Chrome
-        document.getElementById('startButton').addEventListener('click', () => {
-            document.getElementById('overlay').style.display = 'none';
+        this.el.parentEl.addEventListener('targetLost', () => {
+            // 3. LA CLAVE: Resetear el video para liberar RAM en iPhone
+            this.video.pause();
+            this.video.removeAttribute('src'); // Elimina la fuente
+            this.video.load(); // Fuerza al motor a liberar el buffer
         });
+    }
+});
+
+// Botón de inicio
+document.getElementById('startButton').addEventListener('click', () => {
+    document.getElementById('overlay').style.display = 'none';
+    // Opcional: intentar un play silencioso para "despertar" el motor de audio/video
+    const videos = document.querySelectorAll('video');
+    videos.forEach(v => { v.play(); v.pause(); });
+});
     </script>
 </body>
 </html>
