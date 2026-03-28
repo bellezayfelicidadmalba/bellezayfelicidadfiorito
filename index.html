@@ -8,6 +8,7 @@
   gtag('js', new Date());
 
   gtag('config', 'G-3RZYNW1XEZ');
+    
 </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8">
@@ -34,7 +35,7 @@
 <body>
 
     <div id="overlay">
-        <h2>Belleza y Felicidad Fiorito - MALBA 10 </h2>
+        <h2>Belleza y Felicidad Fiorito - MALBA 11 </h2>
         <p>Apunta a los marcadores para ver los videos</p>
         <button id="startButton">COMENZAR EXPERIENCIA</button>
         <p class="loading-text">Se recomienda el uso de auriculares</p>
@@ -97,42 +98,56 @@
         </a-scene>
 
     <script>
-// Componente optimizado para iOS (Safari)
 AFRAME.registerComponent('smart-video-player', {
     init: function () {
         this.video = document.querySelector(this.el.getAttribute('src'));
-        
+        this.dataSrc = this.video.getAttribute('data-src');
+
         this.el.parentEl.addEventListener('targetFound', () => {
-            // 1. Asignar el src solo cuando se encuentra el target
-            if (!this.video.src || this.video.src === window.location.href) {
-                this.video.src = this.video.getAttribute('data-src');
+            console.log("Target encontrado");
+            
+            // Si el video no tiene fuente o está vacío, se la asignamos
+            if (!this.video.src || this.video.src === window.location.href || this.video.src === "") {
+                this.video.src = this.dataSrc;
                 this.video.load();
             }
-            
-            // 2. Intentar reproducir (promesa para evitar errores de políticas)
-            const playPromise = this.video.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Auto-play prevenido:", error);
-                });
-            }
+
+            // Reproducción con manejo de promesa para evitar bloqueos
+            this.video.play().catch(err => {
+                console.warn("Error al reproducir:", err);
+            });
         });
 
         this.el.parentEl.addEventListener('targetLost', () => {
-            // 3. LA CLAVE: Resetear el video para liberar RAM en iPhone
+            console.log("Target perdido");
             this.video.pause();
-            this.video.removeAttribute('src'); // Elimina la fuente
-            this.video.load(); // Fuerza al motor a liberar el buffer
+
+            // En lugar de borrar el src, lo "vaciamos" de forma suave
+            // Esto libera RAM en iOS sin romper el nodo en Android
+            if (AFRAME.utils.device.isIOS()) {
+                this.video.src = ""; 
+                this.video.load();
+            }
         });
     }
 });
 
-// Botón de inicio
+// Botón de inicio: Crucial para "despertar" los videos en iOS/Android
 document.getElementById('startButton').addEventListener('click', () => {
-    document.getElementById('overlay').style.display = 'none';
-    // Opcional: intentar un play silencioso para "despertar" el motor de audio/video
-    const videos = document.querySelectorAll('video');
-    videos.forEach(v => { v.play(); v.pause(); });
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+
+    // "Despertar" todos los videos con un play/pause rápido
+    // Esto quita el bloqueo de reproducción automática de los navegadores
+    const allVideos = document.querySelectorAll('video');
+    allVideos.forEach(v => {
+        v.play().then(() => {
+            v.pause();
+            v.currentTime = 0;
+        }).catch(() => {
+            // Silenciamos el error si el navegador bloquea el "pre-despertar"
+        });
+    });
 });
     </script>
 </body>
