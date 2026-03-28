@@ -35,7 +35,7 @@
 <body>
 
     <div id="overlay">
-        <h2>Belleza y Felicidad Fiorito - MALBA 11 </h2>
+        <h2>Belleza y Felicidad Fiorito - MALBA 12 </h2>
         <p>Apunta a los marcadores para ver los videos</p>
         <button id="startButton">COMENZAR EXPERIENCIA</button>
         <p class="loading-text">Se recomienda el uso de auriculares</p>
@@ -82,73 +82,90 @@
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
         <a-entity mindar-image-target="targetIndex:0"><a-video src="#vid0" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:1"><a-video src="#vid1" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5"" smart-video-player></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:1"><a-video src="#vid1" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:2"><a-video src="#vid2" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:3"><a-video src="#vid3" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:4"><a-video src="#vid4" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:5"><a-video src="#vid5" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5"smart-video-player></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:5"><a-video src="#vid5" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:6"><a-video src="#vid6" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:7"><a-video src="#vid7" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:8"><a-video src="#vid8" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:9"><a-video src="#vid9" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:10"><a-video src="#vid10"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:11"><a-video src="#vid11"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5"smart-video-player></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:11"><a-video src="#vid11"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:12"><a-video src="#vid12"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
 <a-entity mindar-image-target="targetIndex:13"><a-video src="#vid13"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
         </a-scene>
 
     <script>
+// 1. Registro del componente con manejo de errores y ciclos de vida limpios
 AFRAME.registerComponent('smart-video-player', {
     init: function () {
         this.video = document.querySelector(this.el.getAttribute('src'));
         this.dataSrc = this.video.getAttribute('data-src');
+        this.isLoaded = false;
 
+        // Escuchar el evento de 'targetFound'
         this.el.parentEl.addEventListener('targetFound', () => {
-            console.log("Target encontrado");
-            
-            // Si el video no tiene fuente o está vacío, se la asignamos
-            if (!this.video.src || this.video.src === window.location.href || this.video.src === "") {
-                this.video.src = this.dataSrc;
-                this.video.load();
-            }
-
-            // Reproducción con manejo de promesa para evitar bloqueos
-            this.video.play().catch(err => {
-                console.warn("Error al reproducir:", err);
-            });
+            this.playVideo();
         });
 
+        // Escuchar el evento de 'targetLost'
         this.el.parentEl.addEventListener('targetLost', () => {
-            console.log("Target perdido");
-            this.video.pause();
-
-            // En lugar de borrar el src, lo "vaciamos" de forma suave
-            // Esto libera RAM en iOS sin romper el nodo en Android
-            if (AFRAME.utils.device.isIOS()) {
-                this.video.src = ""; 
-                this.video.load();
-            }
+            this.stopVideo();
         });
+    },
+
+    playVideo: function() {
+        if (!this.video) return;
+
+        // Solo asignar src si no tiene uno activo (ahorra CPU)
+        if (!this.video.src || this.video.src === window.location.href || this.video.src === "") {
+            this.video.src = this.dataSrc;
+            this.video.load();
+        }
+
+        // Usar setTimeout para no bloquear el hilo de la cámara inmediatamente
+        setTimeout(() => {
+            this.video.play().catch(err => console.warn("Video bloqueado:", err));
+        }, 50);
+    },
+
+    stopVideo: function() {
+        if (!this.video) return;
+        this.video.pause();
+        
+        // Liberar memoria SOLO si es necesario (iOS) sin romper el objeto
+        if (AFRAME.utils.device.isIOS()) {
+            this.video.removeAttribute('src'); 
+            this.video.load();
+        }
     }
 });
 
-// Botón de inicio: Crucial para "despertar" los videos en iOS/Android
-document.getElementById('startButton').addEventListener('click', () => {
+// 2. Manejo del botón de inicio y permisos
+document.getElementById('startButton').addEventListener('click', function() {
     const overlay = document.getElementById('overlay');
     overlay.style.display = 'none';
 
-    // "Despertar" todos los videos con un play/pause rápido
-    // Esto quita el bloqueo de reproducción automática de los navegadores
-    const allVideos = document.querySelectorAll('video');
-    allVideos.forEach(v => {
-        v.play().then(() => {
-            v.pause();
-            v.currentTime = 0;
-        }).catch(() => {
-            // Silenciamos el error si el navegador bloquea el "pre-despertar"
-        });
-    });
+    // "Desbloqueo" global de audio/video para navegadores móviles
+    const sceneEl = document.querySelector('a-scene');
+    if (sceneEl.hasLoaded) {
+        runPostClick();
+    } else {
+        sceneEl.addEventListener('loaded', runPostClick);
+    }
 });
+
+function runPostClick() {
+    // Esto asegura que la cámara de MindAR no se detenga por falta de interacción
+    const videoElements = document.querySelectorAll('video');
+    videoElements.forEach(v => {
+        v.muted = false; // Aseguramos que el audio esté disponible
+        // Intento de reproducción fantasma para validar el canal de datos
+        v.play().then(() => v.pause()).catch(() => {});
+    });
+}
     </script>
 </body>
 </html>
