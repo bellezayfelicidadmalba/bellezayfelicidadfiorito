@@ -18,7 +18,7 @@
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
 <style>
-body { margin:0; overflow:hidden; background:black; }
+body { margin:0; overflow:hidden; background:black; font-family: 'Helvetica' }
 
 #overlay {
     position:fixed;
@@ -47,12 +47,12 @@ button {
 
 <div id="overlay">
     <h2>BELLEZA Y FELICIDAD FIORITO. MALBA</h2>
-    <p>Apunta a los marcadores </p>
+    <p>Apunta la cámara a los marcadores </p>
     <button id="startButton">INICIAR</button>
 </div>
 
 <a-scene
-mindar-image="imageTargetSrc: ./targets.mind; maxTrack:1; filterBeta: 0.01;"
+mindar-image="imageTargetSrc: ./targets.mind; maxTrack:1; filterBeta: 0.08; filterMincf 0.01;"
 color-space="sRGB"
 renderer="colorManagement:true"
 vr-mode-ui="enabled:false"
