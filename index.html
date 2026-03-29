@@ -9,8 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
 <style>
-body { margin:0; overflow:hidden; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif; }
-
+body { margin:0; overflow:hidden; background:black; }
 #overlay {
   position:fixed;
   width:100%; height:100%;
@@ -22,22 +21,19 @@ body { margin:0; overflow:hidden; font-family: -apple-system, BlinkMacSystemFont
   align-items:center;
   z-index:9999;
 }
-button {
-  padding:15px 30px;
-  font-size:18px;
-}
+button { padding:15px 30px; font-size:18px; }
 </style>
 </head>
 
 <body>
 
 <div id="overlay">
-  <h2>Belleza y Felicidad Fiorito. MALBA</h2>
+  <h2>Belleza y Felicidad Fiorito</h2>
   <button id="startButton">INICIAR</button>
 </div>
 
 <a-scene
-mindar-image="imageTargetSrc: ./targets.mind; maxTrack:1; filterBeta:0.2; filterMinCF:0.02;"
+mindar-image="imageTargetSrc: ./targets.mind; maxTrack:1; filterBeta:0.1; filterMinCF:0.02;"
 renderer="colorManagement:true"
 vr-mode-ui="enabled:false"
 device-orientation-permission-ui="enabled:false"
@@ -45,134 +41,65 @@ device-orientation-permission-ui="enabled:false"
 
 <a-assets>
 
-<video id="vid0" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid1" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid2" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid3" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid4" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid5" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid6" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid7" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid8" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid9" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid10" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid0" muted playsinline crossorigin="anonymous"></video>
+<video id="vid1" muted playsinline crossorigin="anonymous"></video>
+<video id="vid2" muted playsinline crossorigin="anonymous"></video>
+<video id="vid3" muted playsinline crossorigin="anonymous"></video>
+<video id="vid4" muted playsinline crossorigin="anonymous"></video>
+<video id="vid5" muted playsinline crossorigin="anonymous"></video>
+<video id="vid6" muted playsinline crossorigin="anonymous"></video>
+<video id="vid7" muted playsinline crossorigin="anonymous"></video>
+<video id="vid8" muted playsinline crossorigin="anonymous"></video>
+<video id="vid9" muted playsinline crossorigin="anonymous"></video>
+<video id="vid10" muted playsinline crossorigin="anonymous"></video>
 
 </a-assets>
 
-<a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
+<a-camera position="0 0 0"></a-camera>
 
-<!-- TARGETS -->
-
-<!-- DUPLICAR BLOQUE PARA CADA VIDEO -->
-
-<a-entity mindar-image-target="targetIndex:0">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid0" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<!-- SOLO UN WRAPPER POR TARGET -->
+<a-entity id="target0" mindar-image-target="targetIndex:0">
+  <a-video src="#vid0" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:1">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid1" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target1" mindar-image-target="targetIndex:1">
+  <a-video src="#vid1" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:2">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid2" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target2" mindar-image-target="targetIndex:2">
+  <a-video src="#vid2" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:3">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid3" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target3" mindar-image-target="targetIndex:3">
+  <a-video src="#vid3" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:4">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid4" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target4" mindar-image-target="targetIndex:4">
+  <a-video src="#vid4" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:5">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid5" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target5" mindar-image-target="targetIndex:5">
+  <a-video src="#vid5" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:6">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid6" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target6" mindar-image-target="targetIndex:6">
+  <a-video src="#vid6" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:7">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid7" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target7" mindar-image-target="targetIndex:7">
+  <a-video src="#vid7" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:8">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid8" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target8" mindar-image-target="targetIndex:8">
+  <a-video src="#vid8" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:9">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid9" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target9" mindar-image-target="targetIndex:9">
+  <a-video src="#vid9" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
-<a-entity mindar-image-target="targetIndex:10">
-  <a-entity class="tracker">
-    <a-entity class="smooth" hybrid-stabilizer>
-      <a-entity class="lock">
-        <a-video src="#vid10" width="3" height="5" material="shader: flat"></a-video>
-      </a-entity>
-    </a-entity>
-  </a-entity>
+<a-entity id="target10" mindar-image-target="targetIndex:10">
+  <a-video src="#vid10" width="3" height="5" material="shader: flat"></a-video>
 </a-entity>
 
 </a-scene>
@@ -194,37 +121,8 @@ const sources = [
 ];
 
 let currentVideo = null;
-
-const isAndroid = /android/i.test(navigator.userAgent);
-const SMOOTH = isAndroid ? 0.08 : 0.15;
-const LOCK = isAndroid ? 15 : 8;
-
-AFRAME.registerComponent('hybrid-stabilizer', {
-  init: function () {
-    this.target = this.el.parentEl.object3D;
-    this.pos = new THREE.Vector3();
-    this.rot = new THREE.Quaternion();
-    this.locked = false;
-    this.counter = 0;
-  },
-  tick: function () {
-
-    const t = this.target;
-    const dist = this.pos.distanceTo(t.position);
-
-    if (dist < 0.002) this.counter++;
-    else { this.counter = 0; this.locked = false; }
-
-    if (this.counter > LOCK) this.locked = true;
-
-    if (!this.locked) {
-      this.pos.lerp(t.position, SMOOTH);
-      this.rot.slerp(t.quaternion, SMOOTH);
-      this.el.object3D.position.copy(this.pos);
-      this.el.object3D.quaternion.copy(this.rot);
-    }
-  }
-});
+let locked = false;
+let stableCount = 0;
 
 const sceneEl = document.querySelector('a-scene');
 
@@ -234,13 +132,12 @@ document.getElementById('startButton').addEventListener('click', async () => {
 
   document.querySelectorAll('video').forEach((v,i)=>{
     v.src = sources[i];
-    v.load();
   });
 
   await sceneEl.systems["mindar-image-system"].start();
-
 });
 
+// 🔴 BLOQUEO REAL DE TRACKING
 document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
 
   target.addEventListener('targetFound', async () => {
@@ -250,27 +147,56 @@ document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
     if(currentVideo && currentVideo !== vid){
       currentVideo.pause();
       currentVideo.currentTime = 0;
-      currentVideo.muted = true;
     }
 
     vid.muted = false;
-
     try { await vid.play(); } catch(e){}
 
     currentVideo = vid;
+
+    locked = false;
+    stableCount = 0;
   });
 
   target.addEventListener('targetLost', () => {
 
     const vid = document.querySelector(`#vid${index}`);
-
     vid.pause();
     vid.currentTime = 0;
-    vid.muted = true;
 
-    currentVideo = null;
+    locked = false;
+    stableCount = 0;
   });
 
+});
+
+// 🔥 ANTI-JITTER DEFINITIVO
+AFRAME.registerComponent('hard-lock', {
+  init: function () {
+    this.lastPos = new THREE.Vector3();
+  },
+  tick: function () {
+
+    const pos = this.el.object3D.position;
+
+    const dist = this.lastPos.distanceTo(pos);
+
+    if (dist < 0.001) stableCount++;
+    else stableCount = 0;
+
+    if (stableCount > 10) locked = true;
+
+    if (locked) {
+      this.el.object3D.position.copy(this.lastPos);
+    } else {
+      this.lastPos.copy(pos);
+    }
+  }
+});
+
+// aplicar a todos
+document.querySelectorAll('[mindar-image-target]').forEach(el=>{
+  el.setAttribute('hard-lock','');
 });
 
 </script>
