@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta charset="UTF-8">
-<title>MALBA RA PRO</title>
+<title>MALBA RA PRO FINAL</title>
 
 <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
@@ -41,6 +41,7 @@ device-orientation-permission-ui="enabled:false"
 
 <a-assets>
 
+<!-- 🔥 IMPORTANTE: sin preload raro -->
 <video id="vid0" muted playsinline crossorigin="anonymous"></video>
 <video id="vid1" muted playsinline crossorigin="anonymous"></video>
 <video id="vid2" muted playsinline crossorigin="anonymous"></video>
@@ -57,55 +58,90 @@ device-orientation-permission-ui="enabled:false"
 
 <a-camera position="0 0 0"></a-camera>
 
-<!-- SOLO UN WRAPPER POR TARGET -->
-<a-entity id="target0" mindar-image-target="targetIndex:0">
-  <a-video src="#vid0" width="3" height="5" material="shader: flat"></a-video>
+<!-- ESTRUCTURA ESTABLE -->
+
+<a-entity mindar-image-target="targetIndex:0">
+  <a-entity smooth-follow>
+    <a-video src="#vid0" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target1" mindar-image-target="targetIndex:1">
-  <a-video src="#vid1" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:1">
+  <a-entity smooth-follow>
+    <a-video src="#vid1" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target2" mindar-image-target="targetIndex:2">
-  <a-video src="#vid2" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:2">
+  <a-entity smooth-follow>
+    <a-video src="#vid2" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target3" mindar-image-target="targetIndex:3">
-  <a-video src="#vid3" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:3">
+  <a-entity smooth-follow>
+    <a-video src="#vid3" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target4" mindar-image-target="targetIndex:4">
-  <a-video src="#vid4" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:4">
+  <a-entity smooth-follow>
+    <a-video src="#vid4" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target5" mindar-image-target="targetIndex:5">
-  <a-video src="#vid5" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:5">
+  <a-entity smooth-follow>
+    <a-video src="#vid5" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target6" mindar-image-target="targetIndex:6">
-  <a-video src="#vid6" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:6">
+  <a-entity smooth-follow>
+    <a-video src="#vid6" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target7" mindar-image-target="targetIndex:7">
-  <a-video src="#vid7" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:7">
+  <a-entity smooth-follow>
+    <a-video src="#vid7" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target8" mindar-image-target="targetIndex:8">
-  <a-video src="#vid8" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:8">
+  <a-entity smooth-follow>
+    <a-video src="#vid8" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target9" mindar-image-target="targetIndex:9">
-  <a-video src="#vid9" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:9">
+  <a-entity smooth-follow>
+    <a-video src="#vid9" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
-<a-entity id="target10" mindar-image-target="targetIndex:10">
-  <a-video src="#vid10" width="3" height="5" material="shader: flat"></a-video>
+<a-entity mindar-image-target="targetIndex:10">
+  <a-entity smooth-follow>
+    <a-video src="#vid10" width="3" height="5"
+      material="shader: flat; transparent: true"></a-video>
+  </a-entity>
 </a-entity>
 
 </a-scene>
 
 <script>
 
+// URLs
 const sources = [
 "https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772938685/1_COMEDOR_GOURMET_REPARTO_TUPPERS_480_hxse1v.mp4",
 "https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/2_TALLER_NINIES_480_oidhcn.mp4",
@@ -121,8 +157,20 @@ const sources = [
 ];
 
 let currentVideo = null;
-let locked = false;
-let stableCount = 0;
+
+AFRAME.registerComponent('smooth-follow', {
+  init: function () {
+    this.target = this.el.parentEl.object3D;
+    this.pos = new THREE.Vector3();
+    this.rot = new THREE.Quaternion();
+  },
+  tick: function () {
+    this.pos.lerp(this.target.position, 0.12);
+    this.rot.slerp(this.target.quaternion, 0.12);
+    this.el.object3D.position.copy(this.pos);
+    this.el.object3D.quaternion.copy(this.rot);
+  }
+});
 
 const sceneEl = document.querySelector('a-scene');
 
@@ -135,9 +183,9 @@ document.getElementById('startButton').addEventListener('click', async () => {
   });
 
   await sceneEl.systems["mindar-image-system"].start();
+
 });
 
-// 🔴 BLOQUEO REAL DE TRACKING
 document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
 
   target.addEventListener('targetFound', async () => {
@@ -153,50 +201,16 @@ document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
     try { await vid.play(); } catch(e){}
 
     currentVideo = vid;
-
-    locked = false;
-    stableCount = 0;
   });
 
   target.addEventListener('targetLost', () => {
 
     const vid = document.querySelector(`#vid${index}`);
+
     vid.pause();
     vid.currentTime = 0;
-
-    locked = false;
-    stableCount = 0;
   });
 
-});
-
-// 🔥 ANTI-JITTER DEFINITIVO
-AFRAME.registerComponent('hard-lock', {
-  init: function () {
-    this.lastPos = new THREE.Vector3();
-  },
-  tick: function () {
-
-    const pos = this.el.object3D.position;
-
-    const dist = this.lastPos.distanceTo(pos);
-
-    if (dist < 0.001) stableCount++;
-    else stableCount = 0;
-
-    if (stableCount > 10) locked = true;
-
-    if (locked) {
-      this.el.object3D.position.copy(this.lastPos);
-    } else {
-      this.lastPos.copy(pos);
-    }
-  }
-});
-
-// aplicar a todos
-document.querySelectorAll('[mindar-image-target]').forEach(el=>{
-  el.setAttribute('hard-lock','');
 });
 
 </script>
