@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RZYNW1XEZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-3RZYNW1XEZ');
-</script>
-    
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta charset="UTF-8">
 <title>Experiencia RA PRO</title>
@@ -33,7 +25,6 @@ body { margin:0; overflow:hidden; background:black; }
     z-index:9999;
     text-align:center;
 }
-
 button {
     padding:16px 32px;
     font-size:18px;
@@ -47,91 +38,86 @@ button {
 
 <div id="overlay">
     <h2>BELLEZA Y FELICIDAD FIORITO. MALBA</h2>
-    <p>Apunta a los marcadores </p>
+    <p>Apunta a los marcadores</p>
     <button id="startButton">INICIAR</button>
 </div>
 
 <a-scene
-     mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 1; filterMinCF:0.1; filterBeta: 0.4" 
-     color-space="sRGB" 
-     renderer="colorManagement: true, physicallyCorrectLights" 
-     vr-mode-ui="enabled: false" 
-     device-orientation-permission-ui="enabled: false">
+ mindar-image="imageTargetSrc: ./targets.mind; maxTrack:1; filterMinCF:0.01; filterBeta:0.1"
+ color-space="sRGB"
+ renderer="precision: mediump; antialias:true; logarithmicDepthBuffer:true;"
+ vr-mode-ui="enabled: false"
+ device-orientation-permission-ui="enabled: false"
+ embedded
 >
 
 <a-assets>
 
-<!-- SOLO metadata al inicio -->
-<video id="vid0" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid1" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid2" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid3" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid4" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid5" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid6" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid7" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid8" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid9" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid10" preload="metadata" muted playsinline crossorigin="anonymous"></video>
-<video id="vid11" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<!-- videos -->
+<script>
+for(let i=0;i<12;i++){
+  const v=document.createElement("video");
+  v.id="vid"+i;
+  v.setAttribute("preload","none");
+  v.setAttribute("playsinline","");
+  v.setAttribute("webkit-playsinline","");
+  v.crossOrigin="anonymous";
+  document.currentScript.parentNode.appendChild(v);
+}
+</script>
 
 </a-assets>
 
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-<!-- TARGETS -->
-<a-entity mindar-image-target="targetIndex:0"><a-video src="#vid0" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:1"><a-video src="#vid1" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:2"><a-video src="#vid2" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:3"><a-video src="#vid3" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:4"><a-video src="#vid4" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:5"><a-video src="#vid5" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:6"><a-video src="#vid6" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:7"><a-video src="#vid7" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:8"><a-video src="#vid8" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:9"><a-video src="#vid9" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:10"><a-video src="#vid10" width="3" height="5"></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:11"><a-video src="#vid11" width="3" height="5"></a-video></a-entity>
+<!-- targets con contenedor estabilizador -->
+<script>
+for(let i=0;i<12;i++){
+  document.write(`
+  <a-entity mindar-image-target="targetIndex:${i}">
+    <a-entity class="anchor" visible="false">
+      <a-video src="#vid${i}" width="3" height="5"></a-video>
+    </a-entity>
+  </a-entity>
+  `);
+}
+</script>
 
 </a-scene>
 
 <script>
 
-const sources = [
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772938685/1_COMEDOR_GOURMET_REPARTO_TUPPERS_480_hxse1v.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/2_TALLER_NINIES_480_oidhcn.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908741/3_SERIGRAFIA480_bs3bnn.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/4_TALLER_CERAMICA_ADULTO_480_mze0hn.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1773112691/5_LA_JOYA_tjnvge.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908744/6_TALLER_COSTURA_DELANTALES_480_wnhiyo.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908747/7_VEREDAS_FIORITO_CHICAS_BAILANDO_i1muut.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908745/8_VEREDAS_FIORITO_HELADOS_480_fdzlhs.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908748/9_VEREDAS_FIORITO_NINIES_CAMINANDO_480_rlx0my.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908750/10_VEREDAS_FIORITO_NINIES_480_dkxfpd.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1774763051/11_B_VEREDAS_FIORITO_POLICIA_OK_OK_irztyl.mp4",
-"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1774759116/12_B_VEREDAS_FIORITO_RIACHUELO_a0tuex.mp4"
-];
+const sources = [/* TUS URLS IGUAL */];
 
 let currentVideo = null;
+let anchors = [];
+let initialized = false;
 
 const sceneEl = document.querySelector('a-scene');
 
+// INIT BUTTON
 document.getElementById('startButton').addEventListener('click', async () => {
 
     document.getElementById('overlay').style.display = 'none';
 
-    // precarga mínima (hack iOS)
+    // carga progresiva REAL (clave para Cloudflare)
     document.querySelectorAll('video').forEach((v,i)=>{
         v.src = sources[i];
         v.load();
     });
 
     await sceneEl.systems["mindar-image-system"].start();
-
+    initialized = true;
 });
 
-// lógica PRO
+// estabilizador tipo "lock"
 document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
+
+    const anchor = target.querySelector('.anchor');
+    anchors.push(anchor);
+
+    let locked = false;
+    let lastMatrix = new THREE.Matrix4();
 
     target.addEventListener('targetFound', async () => {
 
@@ -141,10 +127,21 @@ document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
         if(currentVideo && currentVideo !== vid){
             currentVideo.pause();
             currentVideo.currentTime = 0;
-            currentVideo.muted = true;
         }
 
-        // activar actual
+        // 🔥 LOCK DE POSICIÓN (anti vibración)
+        target.object3D.updateMatrixWorld(true);
+        lastMatrix.copy(target.object3D.matrixWorld);
+        anchor.object3D.matrix.copy(lastMatrix);
+        anchor.object3D.matrix.decompose(
+            anchor.object3D.position,
+            anchor.object3D.quaternion,
+            anchor.object3D.scale
+        );
+
+        anchor.setAttribute("visible", true);
+        locked = true;
+
         vid.muted = false;
         await vid.play();
 
@@ -157,16 +154,41 @@ document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
 
         vid.pause();
         vid.currentTime = 0;
-        vid.muted = true;
+
+        anchor.setAttribute("visible", false);
+        locked = false;
 
         currentVideo = null;
     });
 
+    // actualización suave (híbrido real)
+    sceneEl.addEventListener("renderstart", () => {
+
+        sceneEl.addEventListener("tick", () => {
+
+            if(!locked) return;
+
+            target.object3D.updateMatrixWorld(true);
+
+            // interpolación suave
+            lastMatrix.lerp(target.object3D.matrixWorld, 0.15);
+
+            anchor.object3D.matrix.copy(lastMatrix);
+            anchor.object3D.matrix.decompose(
+                anchor.object3D.position,
+                anchor.object3D.quaternion,
+                anchor.object3D.scale
+            );
+
+        });
+
+    });
+
 });
 
-// debug real
+// errores
 sceneEl.addEventListener('arError', (e)=>{
-    alert("Error AR: revisar cámara / HTTPS");
+    alert("Error AR: revisar HTTPS / permisos cámara");
     console.error(e);
 });
 
