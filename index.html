@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RZYNW1XEZ"></script>
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RZYNW1XEZ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -9,132 +9,168 @@
 
   gtag('config', 'G-3RZYNW1XEZ');
 </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="UTF-8">
-    <title>Experiencia RA - MALBA</title>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     
-    <style>
-        body { margin: 0; overflow: hidden; font-family: 'Helvetica', sans-serif; }
-        /* Pantalla de carga y permiso de audio */
-        #overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 1000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; text-align: center; padding: 20px;
-        }
-        #overlay button {
-            padding: 15px 30px; font-size: 18px; background: #fff; border: none;
-            border-radius: 25px; cursor: pointer; margin-top: 20px; font-weight: bold;
-        }
-        .loading-text { font-size: 14px; margin-top: 10px; color: #aaa; }
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<title>Experiencia RA PRO</title>
+
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+<style>
+body { margin:0; overflow:hidden; background:black; }
+
+#overlay {
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    z-index:9999;
+    text-align:center;
+}
+
+button {
+    padding:16px 32px;
+    font-size:18px;
+    border-radius:30px;
+    border:none;
+}
+</style>
 </head>
+
 <body>
 
-    <div id="overlay">
-        <h2>Belleza y Felicidad Fiorito - MALBA 14 </h2>
-        <p>Apunta a los marcadores para ver los videos</p>
-        <button id="startButton">COMENZAR EXPERIENCIA</button>
-        <p class="loading-text">Se recomienda el uso de auriculares</p>
-    </div>
+<div id="overlay">
+    <h2>MALBA RA</h2>
+    <p>Tocar para comenzar</p>
+    <button id="startButton">INICIAR</button>
+</div>
 
-    <a-scene 
-        mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 1; filterMinCF:0.0001; filterBeta: 0.001" 
-        color-space="sRGB" 
-        renderer="colorManagement: true, physicallyCorrectLights" 
-        vr-mode-ui="enabled: false" 
-        device-orientation-permission-ui="enabled: false">
-        
-        <a-assets>
-            <video id="vid0" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772938685/1_COMEDOR_GOURMET_REPARTO_TUPPERS_480_hxse1v.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+<a-scene
+mindar-image="imageTargetSrc: ./targets.mind; maxTrack:1; filterBeta: 0.01;"
+color-space="sRGB"
+renderer="colorManagement:true"
+vr-mode-ui="enabled:false"
+device-orientation-permission-ui="enabled:false"
+>
 
-<video id="vid1" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/2_TALLER_NINIES_480_oidhcn.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+<a-assets>
 
-<video id="vid2" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908741/3_SERIGRAFIA480_bs3bnn.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+<!-- SOLO metadata al inicio -->
+<video id="vid0" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid1" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid2" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid3" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid4" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid5" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid6" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid7" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid8" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid9" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid10" preload="metadata" muted playsinline crossorigin="anonymous"></video>
+<video id="vid11" preload="metadata" muted playsinline crossorigin="anonymous"></video>
 
-<video id="vid3" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/4_TALLER_CERAMICA_ADULTO_480_mze0hn.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+</a-assets>
 
-<video id="vid4" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1773112691/5_LA_JOYA_tjnvge.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+<a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-<video id="vid5" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908744/6_TALLER_COSTURA_DELANTALES_480_wnhiyo.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+<!-- TARGETS -->
+<a-entity mindar-image-target="targetIndex:0"><a-video src="#vid0" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:1"><a-video src="#vid1" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:2"><a-video src="#vid2" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:3"><a-video src="#vid3" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:4"><a-video src="#vid4" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:5"><a-video src="#vid5" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:6"><a-video src="#vid6" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:7"><a-video src="#vid7" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:8"><a-video src="#vid8" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:9"><a-video src="#vid9" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:10"><a-video src="#vid10" width="3" height="5"></a-video></a-entity>
+<a-entity mindar-image-target="targetIndex:11"><a-video src="#vid11" width="3" height="5"></a-video></a-entity>
 
-<video id="vid6" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908747/7_VEREDAS_FIORITO_CHICAS_BAILANDO_i1muut.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+</a-scene>
 
-<video id="vid7" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908745/8_VEREDAS_FIORITO_HELADOS_480_fdzlhs.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+<script>
 
-<video id="vid8" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908748/9_VEREDAS_FIORITO_NINIES_CAMINANDO_480_rlx0my.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+const sources = [
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772938685/1_COMEDOR_GOURMET_REPARTO_TUPPERS_480_hxse1v.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/2_TALLER_NINIES_480_oidhcn.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908741/3_SERIGRAFIA480_bs3bnn.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908740/4_TALLER_CERAMICA_ADULTO_480_mze0hn.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1773112691/5_LA_JOYA_tjnvge.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908744/6_TALLER_COSTURA_DELANTALES_480_wnhiyo.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908747/7_VEREDAS_FIORITO_CHICAS_BAILANDO_i1muut.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908745/8_VEREDAS_FIORITO_HELADOS_480_fdzlhs.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908748/9_VEREDAS_FIORITO_NINIES_CAMINANDO_480_rlx0my.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908750/10_VEREDAS_FIORITO_NINIES_480_dkxfpd.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908751/11_VEREDAS_FIORITO_POLICIA_480_m3e72k.mp4",
+"https://res.cloudinary.com/dnsy0ccg8/video/upload/v1774759116/12_B_VEREDAS_FIORITO_RIACHUELO_a0tuex.mp4"
+];
 
-<video id="vid9" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908750/10_VEREDAS_FIORITO_NINIES_480_dkxfpd.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+let currentVideo = null;
 
-<video id="vid10" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1772908751/11_VEREDAS_FIORITO_POLICIA_480_m3e72k.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+const sceneEl = document.querySelector('a-scene');
 
-<video id="vid11" preload="none" data-src="https://res.cloudinary.com/dnsy0ccg8/video/upload/v1774759116/12_B_VEREDAS_FIORITO_RIACHUELO_a0tuex.mp4" loop crossorigin="anonymous" playsinline webkit-playsinline></video>
+document.getElementById('startButton').addEventListener('click', async () => {
 
-        </a-assets>
+    document.getElementById('overlay').style.display = 'none';
 
-        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    // precarga mínima (hack iOS)
+    document.querySelectorAll('video').forEach((v,i)=>{
+        v.src = sources[i];
+        v.load();
+    });
 
-        <a-entity mindar-image-target="targetIndex:0"><a-video src="#vid0" position="0 -0.5 0.1" rotation="0 0 5" width="2.5" height="4" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:1"><a-video src="#vid1" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:2"><a-video src="#vid2" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:3"><a-video src="#vid3" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:4"><a-video src="#vid4" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:5"><a-video src="#vid5" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5"smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:6"><a-video src="#vid6" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:7"><a-video src="#vid7" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:8"><a-video src="#vid8" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:9"><a-video src="#vid9" position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:10"><a-video src="#vid10"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:11"><a-video src="#vid11"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:12"><a-video src="#vid12"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-<a-entity mindar-image-target="targetIndex:13"><a-video src="#vid13"  position="0 -0.5 0.1" rotation="0 0 5" width="3" height="5.5" smart-video-player></a-video></a-entity>
-        </a-scene>
+    await sceneEl.systems["mindar-image-system"].start();
 
-    <script>
-        // Componente para manejar carga y reproducción inteligente
-        AFRAME.registerComponent('smart-video-player', {
-            init: function () {
-                const video = document.querySelector(this.el.getAttribute('src'));
-                
-                this.el.parentEl.addEventListener('targetFound', () => {
-                    // Si no tiene fuente, la cargamos en el momento
-                    if (!video.src || video.src === "") {
-                        video.src = video.getAttribute('data-src');
-                        video.load();
-                    }
-                    video.play();
-                });
+});
 
-                this.el.parentEl.addEventListener('targetLost', () => {
-                    video.pause();
-                });
-            }
-        });
+// lógica PRO
+document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
 
-        // Reemplazo desde la línea 105:
-        document.getElementById('startButton').addEventListener('click', () => {
-            // 1. Ocultar el menú
-            document.getElementById('overlay').style.display = 'none';
-            
-            // 2. Despertar los videos para iPhone (Safari)
-            const videos = document.querySelectorAll('video');
-            videos.forEach(v => {
-                // Forzar la carga de la URL desde data-src
-                if (!v.src || v.src === window.location.href) {
-                    v.src = v.getAttribute('data-src');
-                }
-                
-                // Intento de reproducción rápida para ganar permiso del sistema
-                v.play().then(() => {
-                    v.pause();
-                    v.currentTime = 0;
-                }).catch(e => {
-                    console.log("Video listo para carga diferida");
-                });
-            });
-        });
-    </script>
+    target.addEventListener('targetFound', async () => {
+
+        const vid = document.querySelector(`#vid${index}`);
+
+        // apagar anterior
+        if(currentVideo && currentVideo !== vid){
+            currentVideo.pause();
+            currentVideo.currentTime = 0;
+            currentVideo.muted = true;
+        }
+
+        // activar actual
+        vid.muted = false;
+        await vid.play();
+
+        currentVideo = vid;
+    });
+
+    target.addEventListener('targetLost', () => {
+
+        const vid = document.querySelector(`#vid${index}`);
+
+        vid.pause();
+        vid.currentTime = 0;
+        vid.muted = true;
+
+        currentVideo = null;
+    });
+
+});
+
+// debug real
+sceneEl.addEventListener('arError', (e)=>{
+    alert("Error AR: revisar cámara / HTTPS");
+    console.error(e);
+});
+
+</script>
+
 </body>
 </html>
