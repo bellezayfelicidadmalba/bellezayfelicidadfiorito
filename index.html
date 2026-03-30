@@ -46,14 +46,14 @@ button {
 
 <div id="overlay">
     <h2>BELLEZA Y FELICIDAD FIORITO. MALBA</h2>
-    <p>Apunta la cámara a los marcadores</p>
+    <p>Apunta a los marcadores</p>
     <button id="startButton">INICIAR</button>
 </div>
 
 <a-scene
-mindar-image="imageTargetSrc: ./targets.mind; maxTrack:1; filterBeta:0.25; filterMinCF:0.02"
+mindar-image="imageTargetSrc: ./targets.mind; maxTrack:1; filterBeta:0.2; filterMinCF:0.015"
 color-space="sRGB"
-renderer="colorManagement:true; physicallyCorrectLights:true"
+renderer="colorManagement:true"
 vr-mode-ui="enabled:false"
 device-orientation-permission-ui="enabled:false"
 >
@@ -75,32 +75,32 @@ device-orientation-permission-ui="enabled:false"
 
 <a-camera position="0 0 0" look-controls="enabled:false"></a-camera>
 
-<!-- TARGETS con anclaje + suavizado -->
-<a-entity mindar-image-target="targetIndex:0"><a-entity smooth-follow><a-video src="#vid0" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:1"><a-entity smooth-follow><a-video src="#vid1" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:2"><a-entity smooth-follow><a-video src="#vid2" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:3"><a-entity smooth-follow><a-video src="#vid3" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:4"><a-entity smooth-follow><a-video src="#vid4" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:5"><a-entity smooth-follow><a-video src="#vid5" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:6"><a-entity smooth-follow><a-video src="#vid6" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:7"><a-entity smooth-follow><a-video src="#vid7" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:8"><a-entity smooth-follow><a-video src="#vid8" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:9"><a-entity smooth-follow><a-video src="#vid9" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:10"><a-entity smooth-follow><a-video src="#vid10" width="3" height="5"></a-video></a-entity></a-entity>
-<a-entity mindar-image-target="targetIndex:11"><a-entity smooth-follow><a-video src="#vid11" width="3" height="5"></a-video></a-entity></a-entity>
+<!-- 🔥 ANCLAJE CORRECTO -->
+<a-entity mindar-image-target="targetIndex:0"><a-entity smooth><a-video src="#vid0" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:1"><a-entity smooth><a-video src="#vid1" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:2"><a-entity smooth><a-video src="#vid2" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:3"><a-entity smooth><a-video src="#vid3" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:4"><a-entity smooth><a-video src="#vid4" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:5"><a-entity smooth><a-video src="#vid5" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:6"><a-entity smooth><a-video src="#vid6" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:7"><a-entity smooth><a-video src="#vid7" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:8"><a-entity smooth><a-video src="#vid8" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:9"><a-entity smooth><a-video src="#vid9" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:10"><a-entity smooth><a-video src="#vid10" width="3" height="5"></a-video></a-entity></a-entity>
+<a-entity mindar-image-target="targetIndex:11"><a-entity smooth><a-video src="#vid11" width="3" height="5"></a-video></a-entity></a-entity>
 
 </a-scene>
 
 <script>
 
-// 🔥 SUAVIZADO PRO (clave Android, seguro en iOS)
-AFRAME.registerComponent('smooth-follow', {
+// 🔥 SUAVIZADO REAL (NO rompe iPhone)
+AFRAME.registerComponent('smooth', {
     tick: function () {
         const parent = this.el.parentElement;
         if (!parent.object3D.visible) return;
 
-        this.el.object3D.position.lerp(parent.object3D.position, 0.2);
-        this.el.object3D.quaternion.slerp(parent.object3D.quaternion, 0.2);
+        this.el.object3D.position.lerp(parent.object3D.position, 0.18);
+        this.el.object3D.quaternion.slerp(parent.object3D.quaternion, 0.18);
     }
 });
 
@@ -147,7 +147,10 @@ document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
         }
 
         vid.muted = false;
-        await vid.play();
+
+        try {
+            await vid.play();
+        } catch(e){}
 
         currentVideo = vid;
     });
@@ -163,11 +166,6 @@ document.querySelectorAll('[mindar-image-target]').forEach((target, index) => {
         currentVideo = null;
     });
 
-});
-
-sceneEl.addEventListener('arError', (e)=>{
-    alert("Error AR: revisar cámara / HTTPS");
-    console.error(e);
 });
 
 </script>
